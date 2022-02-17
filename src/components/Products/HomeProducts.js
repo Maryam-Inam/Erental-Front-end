@@ -20,8 +20,15 @@ function HomeProducts({products}) {
           src='https://m.media-amazon.com/images/I/61jovjd+f9L._SX3000_.jpg'
           alt=''
         />
-        <div className='home__row'>
-         <Grid container justify="center" spacing = {3}>
+        {/* <div className='home__row'> */}
+        {/* <div> */}
+
+         {/* <Grid container justify="center" spacing = {3}>
+           {products.map((product) => (
+             <Product product = {product}/>
+           ))}; */}
+
+          <Grid container justify="center" spacing = {3}>
            {products.map(product => (
             <Grid item_key={product.id} xs={12} sm={6} md={4} lg={3}>
               <Product product={product}/>
@@ -31,7 +38,7 @@ function HomeProducts({products}) {
 
         </div>
       </div>
-    </div>
+    // </div>
   )
 }
 

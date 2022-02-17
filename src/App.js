@@ -1,10 +1,34 @@
 import Header from './components/Header'
-import Home from './components/Home'
+import HomeProducts from './components/Products/HomeProducts'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import GetQuote from './components/GetQuote'
 import Form from './components/GetQuote/Form'
 import NewProduct from './components/NewProduct/NewProduct'
+import React, { useState, useEffect } from 'react'
+import { commerce } from './lib/commerce'
+
 function App() {
+
+  //setting products
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState({});
+
+  const fetchProducts = async() => {
+    setProducts( await commerce.products.list());
+  }
+  const fetchCart = async() => {
+    setCart( await commerce.cart.retrieve() );
+  }
+  
+  useEffect(() => {
+      fetchProducts();
+      fetchCart();
+  },[]);
+
+  console.log("my products: ", products);
+  console.log("my cart: ",cart);
+
+
   return (
     //NewProduct />
     //<Form />
@@ -16,7 +40,7 @@ function App() {
             <GetQuote />
           </Route>
           <Route path='/'>
-            <Home></Home>
+            <HomeProducts products={products}/>
           </Route>
         </Switch>
       </div>

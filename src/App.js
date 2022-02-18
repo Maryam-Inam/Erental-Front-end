@@ -38,20 +38,19 @@ function App() {
     <Router>
       <div className='app'>
         <Header></Header>
-        <Switch>
-          <Route>
             <Navbar totalItems={cart.total_items}/>
-          </Route>
-
-          <Route path='/requestquote'>
+        <Switch>
+          <Route exact path='/requestquote'>
             <GetQuote />
           </Route>
 
-          <Route path='/'>
-            {/* <HomeProducts products={products} onAddToCart={handleAddToCart}/> */}
-            <Cart cart = {cart}/>
+          <Route exact path='/'>
+            <Products products={products} onAddToCart={handleAddToCart}/>
           </Route>
 
+          <Route exact path='/cart'>
+            <Cart cart = {cart}/>
+          </Route>
         </Switch>
       </div>
     </Router>

@@ -2,7 +2,7 @@ import React from 'react'
 import './Product.css'
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@material-ui/core';
 // function Product({ title, image, price, rating }) {
-function Product({ product }) {
+function Product({ product , onAddToCart}) {
   return (
     <div className='product'>
       <div className='prouct__info'>
@@ -22,6 +22,9 @@ function Product({ product }) {
       <img src={product.image.url} alt='' />
       <p dangerouslySetInnerHTML={{__html: product.description}}/>
       <button>Get Quote</button>
+      <IconButton aria-label="Add to Cart" onClick = {() => { onAddToCart(product.id,1) }}>
+        Add to Cart
+      </IconButton>
     </div>
   )
 }

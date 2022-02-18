@@ -4,7 +4,7 @@ import NewProduct from '../NewProduct/NewProduct'
 import React from 'react';
 import { Grid } from '@mui/material';
 
-function HomeProducts({products}) {
+function HomeProducts({products, onAddToCart}) {
   
   // const addProductHandler = (products) => {
   //   setProducts((prevProducts) => {
@@ -31,7 +31,7 @@ function HomeProducts({products}) {
           <Grid container justify="center" spacing = {3}>
            {products.map(product => (
             <Grid item_key={product.id} xs={12} sm={6} md={4} lg={3}>
-              <Product product={product}/>
+              <Product product={product} onAddToCart={onAddToCart}/>
            </Grid>
           ))}
           </Grid>

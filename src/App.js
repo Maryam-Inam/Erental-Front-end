@@ -1,5 +1,5 @@
 import Header from './components/Header'
-import HomeProducts from './components/Products/HomeProducts'
+import {Products, Navbar, Cart} from './components'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import GetQuote from './components/GetQuote'
 import Form from './components/GetQuote/Form'
@@ -11,23 +11,26 @@ function App() {
 
   //setting products
   const [products, setProducts] = useState([]);
-  // const [cart, setCart] = useState({});
+  const [cart, setCart] = useState({});
 
   const fetchProducts = async() => {
-    const { data } =( await commerce.products.list());
+    const { data } = await commerce.products.list();
     setProducts(data);
   }
-  // const fetchCart = async() => {
-  //   setCart( await commerce.cart.retrieve() );
-  // }
-  
+  const fetchCart = async() => {
+    setCart(await commerce.cart.retrieve());
+  }
+  const handleAddToCart = async(productId, quantity) => {
+    const item = await commerce.cart.add(productId, quantity);
+    setCart(item.cart); //cart after the item has been added  
+  }
   useEffect(() => {
       fetchProducts();
-      // fetchCart();
+      fetchCart();
   },[]);
 
   console.log("my products: ", products);
-  // console.log("my cart: ",cart);
+  console.log("my cart: ",cart);
   
   return (
     //NewProduct />
@@ -36,12 +39,19 @@ function App() {
       <div className='app'>
         <Header></Header>
         <Switch>
+          <Route>
+            <Navbar totalItems={cart.total_items}/>
+          </Route>
+
           <Route path='/requestquote'>
             <GetQuote />
           </Route>
+
           <Route path='/'>
-            <HomeProducts products={products}/>
+            {/* <HomeProducts products={products} onAddToCart={handleAddToCart}/> */}
+            <Cart cart = {cart}/>
           </Route>
+
         </Switch>
       </div>
     </Router>

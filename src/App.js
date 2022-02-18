@@ -29,7 +29,7 @@ function App() {
       fetchCart();
   },[]);
 
-  console.log("my products: ", products);
+  // console.log("my products: ", products);
   console.log("my cart: ",cart);
   
   return (

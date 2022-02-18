@@ -3,7 +3,7 @@ import { Container, Typography, Button, Grid} from '@material-ui/core'
 import CartItem from './CartItem/CartItem';
 
 const Cart = ({ cart }) => {
-
+    console.log("helloo cart!");    
     const EmptyCart = () => {
         <Typography variant='subtitle1'>You have no items in your shopping cart, start adding some</Typography>
     };
@@ -11,16 +11,18 @@ const Cart = ({ cart }) => {
     const FilledCart = () => {
         <>
             <Grid container spacing={3}>
-                {cart.line_items.map((item) => {
+                {cart.line_items.map((item) => (
                     <Grid item xs={12} sm={4} key={item.id}>
                         <CartItem item={item}/>
                         <div>{cart.subtotal.formatted_with_symbol}</div>
                     </Grid>
-                })}
+                ))}
             </Grid>
         </>
     }
     if(!cart.line_items.length) return 'Loading...';
+
+    console.log("cart empty? ",!cart.line_items.length)
   return (
     <Container>
         <div/>

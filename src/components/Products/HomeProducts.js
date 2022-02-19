@@ -1,11 +1,10 @@
-import './Home.css' 
+import './Home.css'
 import Product from './Product/Product'
-import NewProduct from '../NewProduct/NewProduct' 
-import React from 'react';
-import { Grid } from '@mui/material';
+import NewProduct from '../NewProduct/NewProduct'
+import React from 'react'
+import { Grid } from '@mui/material'
 
-function HomeProducts({products}) {
-  
+function HomeProducts({ products }) {
   // const addProductHandler = (products) => {
   //   setProducts((prevProducts) => {
   //     return [products, ...prevProducts]
@@ -13,7 +12,6 @@ function HomeProducts({products}) {
   // }
   return (
     <div className='home'>
-      {/* <NewProduct onAddProduct={addProductHandler} /> */}
       <div className='home__container'>
         <img
           className='home__image'
@@ -21,17 +19,29 @@ function HomeProducts({products}) {
           alt=''
         />
         <div className='home__row'>
+<<<<<<< Updated upstream
          <Grid container justify="center" spacing = {3}>
            {products.map(product => (
             <Grid item_key={product.id} xs={12} sm={6} md={4} lg={3}>
               <Product product={product}/>
            </Grid>
           ))}
+=======
+          <Grid container justify='center' spacing={2}>
+            {products.map((product) => (
+              <Grid item_key={product.id}>
+                <Product product={product} />
+              </Grid>
+            ))}
+>>>>>>> Stashed changes
           </Grid>
-
         </div>
       </div>
     </div>
+<<<<<<< Updated upstream
+=======
+    // </div>
+>>>>>>> Stashed changes
   )
 }
 
